@@ -1,72 +1,74 @@
-<p align="center">
-  <img src="https://avatars0.githubusercontent.com/u/44036562?s=100&v=4"/> 
-</p>
+# Starter Workflows
 
-## Starter Workflows
+Welcome to the **Starter Workflows** repository! This project provides a curated collection of reusable GitHub Actions workflow templates designed to help you automate, secure, and optimize your development process quickly and efficiently.
 
-These are the workflow files for helping people get started with GitHub Actions.  They're presented whenever you start to create a new GitHub Actions workflow.
+## 🚀 What is This Repo?
 
-**If you want to get started with GitHub Actions, you can use these starter workflows by clicking the "Actions" tab in the repository where you want to create a workflow.**
+This repository contains starter workflow templates that you can use as a foundation for your own CI/CD pipelines. Whether you're building, testing, deploying, or managing your projects, these workflows offer best practices and ready-to-use configurations for various languages and frameworks.
 
-<img src="https://d3vv6lp55qjaqc.cloudfront.net/items/353A3p3Y2x3c2t2N0c01/Image%202019-08-27%20at%203.25.07%20PM.png" max-width="75%"/>
+## 📦 Features
 
-### Directory structure
+- **Easy to Use:** Plug-and-play workflows for popular languages and project types.
+- **Secure by Default:** Templates follow security best practices to help protect your code and secrets.
+- **Efficient:** Optimized for fast setup and minimal configuration.
+- **Customizable:** Easily adapt workflows to fit your unique project requirements.
 
-* [ci](ci): solutions for Continuous Integration workflows
-* [deployments](deployments): solutions for Deployment workflows
-* [automation](automation): solutions for automating workflows
-* [code-scanning](code-scanning): solutions for [Code Scanning](https://github.com/features/security)
-* [pages](pages): solutions for Pages workflows
-* [icons](icons): svg icons for the relevant template
+## 📁 Repository Structure
 
-Each workflow must be written in YAML and have a `.yml` extension. They also need a corresponding `.properties.json` file that contains extra metadata about the workflow (this is displayed in the GitHub.com UI).
+- `.github/workflows/` – Contains all workflow YAML templates.
+- `examples/` – Sample projects using these starter workflows.
+- `docs/` – Additional documentation and guides.
 
-For example: `ci/django.yml` and `ci/properties/django.properties.json`.
+## 🛠️ Getting Started
 
-### Valid properties
+1. **Browse Workflows:**  
+   Go to the `.github/workflows/` directory and review available templates.
 
-* `name`: the name shown in onboarding. This property is unique within the repository.
-* `description`: the description shown in onboarding
-* `iconName`: the icon name in the relevant folder, for example, `django` should have an icon `icons/django.svg`. Only SVG is supported at this time. Another option is to use [octicon](https://primer.style/octicons/). The format to use an octicon is `octicon <<icon name>>`. Example: `octicon person`
-* `creator`: creator of the template shown in onboarding. All the workflow templates from an author will have the same `creator` field.
-* `categories`: the categories that it will be shown under. Choose at least one category from the list [here](#categories). Further, choose the categories from the list of languages available [here](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml) and the list of tech stacks available [here](https://github.com/github-starter-workflows/repo-analysis-partner/blob/main/tech_stacks.yml). When a user views the available templates, those templates that match the language and tech stacks will feature more prominently.
+2. **Copy a Template:**  
+   Copy the desired YAML file into your project’s `.github/workflows/` directory.
 
-### Categories
-* continuous-integration
-* deployment
-* testing
-* code-quality
-* code-review
-* dependency-management
-* monitoring
-* Automation
-* utilities
-* Pages
-* Hugo
+3. **Customize:**  
+   Adjust the workflow as needed for your project (e.g., environment variables, steps).
 
-### Variables
-These variables can be placed in the starter workflow and will be substituted as detailed below:
+4. **Push to GitHub:**  
+   Commit and push your changes. GitHub Actions will automatically pick up the new workflow.
 
-* `$default-branch`: will substitute the branch from the repository, for example `main` and `master`
-* `$protected-branches`: will substitute any protected branches from the repository
-* `$cron-daily`: will substitute a valid but random time within the day
+## 📝 Example
 
-## How to test templates before publishing
+```yaml
+# .github/workflows/nodejs.yml
+name: Node.js CI
 
-### Disable template for public
-The template author adds a `labels` array in the template's `properties.json` file with a label `preview`. This will hide the template from users, unless user uses query parameter `preview=true` in the URL.
-Example `properties.json` file:
-```json
-{
-    "name": "Node.js",
-    "description": "Build and test a Node.js project with npm.",
-    "iconName": "nodejs",
-    "categories": ["Continuous integration", "JavaScript", "npm", "React", "Angular", "Vue"],
-    "labels": ["preview"]
-}
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
 ```
 
-For viewing the templates with `preview` label, provide query parameter `preview=true` to the  `new workflow` page URL. Eg. `https://github.com/<owner>/<repo_name>/actions/new?preview=true`.
+## 🔒 Security
 
-### Enable template for public
-Remove the `labels` array from `properties.json` file to publish the template to public
+- All starter workflows are reviewed for security issues and follow GitHub’s best practices.
+- **Keep your secrets safe:** Never hardcode secrets in workflow files—use GitHub Secrets instead.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please submit pull requests to add, improve, or fix workflows. Before submitting, review the [CONTRIBUTING.md](CONTRIBUTING.md) guidelines.
+
+## 🐞 Issues & Feedback
+
+If you encounter problems or have suggestions, [open an issue](https://github.com/nodoubtz/starter-workflows/issues).
+
+## 💡 License
+
+This repository is licensed under the [MIT License](LICENSE).
+
+---
+
+**Happy automating!**
